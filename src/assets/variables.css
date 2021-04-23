@@ -1,14 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.root,
-#root,
-#docs-root {
+:root {
   --bg-color-main: #17212b;
   --bg-color-secondary: #0e1621;
   --button-color-main: #606b76;
   --button-color-main-hover: #f7f7f7;
   --search-bg-color: #242f3d;
-  --placeholder-bg-color: #535e69;
 }
