@@ -11,4 +11,25 @@
   --button-color-main-hover: #f7f7f7;
   --search-bg-color: #242f3d;
   --placeholder-bg-color: #535e69;
+  --bg-color-highlighted: #2b5278;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

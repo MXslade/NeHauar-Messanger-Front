@@ -10,6 +10,7 @@ module.exports = {
         "button-main-hover": "var(--button-color-main-hover)",
         search: "var(--search-bg-color)",
         "text-secondary": "var(--placeholder-bg-color)",
+        highlighted: "var(--bg-color-highlighted)",
       },
     },
   },

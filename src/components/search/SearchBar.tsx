@@ -19,7 +19,7 @@ export const SearchBar: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex relative">
+    <div className="flex relative w-full">
       <input
         ref={inputRef}
         className={`w-full bg-search rounded focus:outline-none px-2 py-1 text-sm placeholder-text-secondary text-white ${

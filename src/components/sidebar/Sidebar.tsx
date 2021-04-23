@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ChatList } from "../ChatList/ChatList";
 import { SidebarNavigation } from "./SidebarNavigation";
+import { SharedDataContext } from "../../App";
 
-interface Props {
-  isCollapsed: boolean;
-  chosenWindow: "sidebar" | "chat";
-}
+export const Sidebar: React.FC = () => {
+  const { isCollapsedVersion, chosenWindow } = useContext(SharedDataContext);
 
-export const Sidebar: React.FC<Props> = ({ isCollapsed, chosenWindow }) => {
   const standardClassName = "h-full w-1/3";
   const collapsedClassName = `h-full w-full absolute ${
     chosenWindow === "chat" ? "transform -translate-x-full" : ""
@@ -14,8 +13,11 @@ export const Sidebar: React.FC<Props> = ({ isCollapsed, chosenWindow }) => {
 
   return (
     <>
-      <div className={isCollapsed ? collapsedClassName : standardClassName}>
+      <div
+        className={isCollapsedVersion ? collapsedClassName : standardClassName}
+      >
         <SidebarNavigation />
+        <ChatList />
       </div>
     </>
   );
