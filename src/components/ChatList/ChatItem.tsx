@@ -8,7 +8,9 @@ interface Props {
 }
 
 export const ChatItem: React.FC<Props> = ({ chat }) => {
-  const { chosenChat, setChosenChat } = useContext(SharedDataContext);
+  const { chosenChat, setChosenChat, setChosenWindow } = useContext(
+    SharedDataContext
+  );
 
   const getLastMessage = (): React.ReactNode => {
     const message = chat.messages[chat.messages.length - 1];
@@ -32,12 +34,17 @@ export const ChatItem: React.FC<Props> = ({ chat }) => {
     );
   };
 
+  const handleClick = () => {
+    setChosenChat(chat);
+    setChosenWindow("chat");
+  };
+
   return (
     <div
       className={`w-full flex items-center py-2 pointer ${
         chosenChat?.id === chat.id ? "bg-highlighted" : ""
       }`}
-      onClick={() => setChosenChat(chat)}
+      onClick={handleClick}
     >
       <div className="pl-2 pr-1.5">
         <Avatar src={chat.imageSrc} size="large" alt="avatar" />

@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import { SharedDataContext } from "../../App";
+import { ChatNavigation } from "./ChatNavigation";
 
 export const ChatContainer: React.FC = () => {
   const { isCollapsedVersion, chosenWindow } = useContext(SharedDataContext);
 
-  const standardClassName = "h-full w-2/3 border-2 border-green-400";
-  const collapsedClassName = `h-full w-full border-2 border-green-400 absolute ${
+  const standardClassName = "h-full w-2/3";
+  const collapsedClassName = `h-full w-full absolute ${
     chosenWindow === "sidebar" ? "transform translate-x-full" : ""
   }`;
 
@@ -13,7 +14,7 @@ export const ChatContainer: React.FC = () => {
     <div
       className={isCollapsedVersion ? collapsedClassName : standardClassName}
     >
-      Chat
+      <ChatNavigation />
     </div>
   );
 };
