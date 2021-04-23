@@ -24,10 +24,8 @@ export const SharedDataContext = React.createContext<ISharedDataContext>({
 
 const App: React.FC = () => {
   const [isCollapsedVersion, setIsCollapsedVersion] = useState<boolean>(false);
-  const [chosenWindow, setChosenWindow] = useState<"sidebar" | "chat">(
-    "sidebar"
-  );
-  const [chosenChat, setChosenChat] = useState<IChat | null>(null);
+  const [chosenWindow, setChosenWindow] = useState<"sidebar" | "chat">("chat");
+  const [chosenChat, setChosenChat] = useState<IChat | null>(dummyChats[0]);
 
   const handleResize = (event: any) => {
     const windowWidth: number = event.target.innerWidth;
