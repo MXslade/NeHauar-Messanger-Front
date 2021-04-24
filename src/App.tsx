@@ -50,7 +50,7 @@ const App: React.FC = () => {
         setChosenChat: setChosenChat,
       }}
     >
-      <div className="w-full h-screen flex relative">
+      <div className="w-full h-screen flex relative overflow-hidden">
         <Sidebar />
         <ChatContainer />
       </div>

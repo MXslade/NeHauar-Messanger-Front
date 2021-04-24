@@ -20,7 +20,7 @@ export const ChatInput: React.FC<Props> = ({ sendMessage }) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col">
       <div className="flex flex-col">
         <label>User:</label>
         <input

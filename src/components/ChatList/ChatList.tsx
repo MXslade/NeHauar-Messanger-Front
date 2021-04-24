@@ -7,8 +7,8 @@ export const ChatList: React.FC = () => {
 
   return (
     <div
-      className="bg-main overflow-y-scroll"
-      style={{ height: "calc(100vh - 3.5rem)" }}
+      className="bg-main"
+      style={{ height: "calc(100vh - 3.5rem)", overflow: "overlay" }}
     >
       {chats.map((chatItem) => (
         <ChatItem key={chatItem.id} chat={chatItem} />

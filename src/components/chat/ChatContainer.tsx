@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { SharedDataContext } from "../../App";
+import { Chat } from "./Chat";
+import { ChatInputPanel } from "./ChatInputPanel";
 import { ChatNavigation } from "./ChatNavigation";
 
 export const ChatContainer: React.FC = () => {
@@ -15,6 +17,11 @@ export const ChatContainer: React.FC = () => {
       className={isCollapsedVersion ? collapsedClassName : standardClassName}
     >
       <ChatNavigation />
+      <div
+        className="bg-secondary"
+        style={{ height: "calc(100vh - 6.25rem)" }}
+      ></div>
+      <ChatInputPanel />
     </div>
   );
 };
