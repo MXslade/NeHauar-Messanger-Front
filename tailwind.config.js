@@ -11,6 +11,7 @@ module.exports = {
         search: "var(--search-bg-color)",
         "text-secondary": "var(--placeholder-bg-color)",
         highlighted: "var(--bg-color-highlighted)",
+        message: "var(--bg-message-color)",
       },
     },
   },

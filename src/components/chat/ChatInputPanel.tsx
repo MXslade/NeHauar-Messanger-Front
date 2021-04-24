@@ -7,8 +7,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../ui/Button";
 
-export const ChatInputPanel: React.FC = () => {
+interface Props {
+  sendMessage: (user: string, message: string) => void;
+}
+
+export const ChatInputPanel: React.FC<Props> = ({ sendMessage }) => {
   const [message, setMessage] = useState<string>("");
+
+  const handleSendClick = () => {
+    const currentTime = Date.now().toString();
+    sendMessage(currentTime, message);
+    setMessage("");
+  };
 
   return (
     <div className="h-12 w-full flex align-center py-3 bg-main border-l border-black">
@@ -20,7 +30,15 @@ export const ChatInputPanel: React.FC = () => {
         placeholder="Write a message..."
       />
       <Button icon={faSmile} className="w-12" />
-      <Button icon={message ? faPaperPlane : faMicrophone} className="w-11" />
+      {message ? (
+        <Button
+          icon={faPaperPlane}
+          className="w-12"
+          onClick={handleSendClick}
+        />
+      ) : (
+        <Button icon={faMicrophone} className="w-12" />
+      )}
     </div>
   );
 };
