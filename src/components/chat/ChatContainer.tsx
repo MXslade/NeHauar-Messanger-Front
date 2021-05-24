@@ -8,9 +8,8 @@ import { ChatInputPanel } from "./ChatInputPanel";
 import { ChatNavigation } from "./ChatNavigation";
 
 export const ChatContainer: React.FC = () => {
-  const { isCollapsedVersion, chosenWindow, chosenChat } = useContext(
-    SharedDataContext
-  );
+  const { isCollapsedVersion, chosenWindow, chosenChat } =
+    useContext(SharedDataContext);
 
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const [messages, setMessages] = useState<IMessage[]>(
@@ -22,7 +21,7 @@ export const ChatContainer: React.FC = () => {
 
   useEffect(() => {
     const newConnection = new HubConnectionBuilder()
-      .withUrl("https://localhost:5001/hubs/chat")
+      .withUrl("http://localhost:4000/hubs/chat")
       .withAutomaticReconnect()
       .build();
 

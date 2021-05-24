@@ -4,4 +4,6 @@
   --button-color-main: #606b76;
   --button-color-main-hover: #f7f7f7;
   --search-bg-color: #242f3d;
+  --overlay-color: rgba(255, 255, 255, 0.6);
+  --bg-color-weak: rgba(0, 0, 0, 0.3);
 }

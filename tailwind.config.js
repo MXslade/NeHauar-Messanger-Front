@@ -12,6 +12,8 @@ module.exports = {
         "text-secondary": "var(--placeholder-bg-color)",
         highlighted: "var(--bg-color-highlighted)",
         message: "var(--bg-message-color)",
+        "overlay-color": "var(--overlay-color)",
+        weak: "var(--bg-color-weak)",
       },
     },
   },

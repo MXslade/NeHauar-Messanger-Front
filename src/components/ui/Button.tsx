@@ -8,15 +8,16 @@ interface Props
   icon?: IconProp;
 }
 
-export const Button: React.FC<Props> = (props) => {
+export const Button: React.FC<Props> = ({ icon, className, ...props }) => {
   return (
     <button
       onClick={props.onClick}
       className={`text-button-main hover:text-button-main-hover focus:outline-none text-xl flex items-center justify-center ${
-        props.className ? props.className : ""
+        className ? className : ""
       }`}
+      {...props}
     >
-      {props.icon ? <FontAwesomeIcon icon={props.icon} /> : props.children}
+      {icon ? <FontAwesomeIcon icon={icon} /> : props.children}
     </button>
   );
 };
