@@ -5,9 +5,13 @@ export interface IMessage {
 
 export interface IChat {
   id: number;
-  name: string;
-  messages: IMessage[];
-  imageSrc: string;
+  name?: string;
+  messages?: IMessage[];
+  imageSrc?: string;
+  firstUserId: number;
+  secondUserId: number;
+  firstUser: IUser;
+  secondUser: IUser;
 }
 
 export interface IUser {

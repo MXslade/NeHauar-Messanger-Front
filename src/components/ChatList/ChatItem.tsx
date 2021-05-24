@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import { IChat } from "../../utils/types";
 import { Avatar } from "../ui/Avatar";
 import { SharedDataContext } from "../../App";
+import { AuthContext } from "../../App";
+import { getChatName } from "../../utils/functions";
 
 interface Props {
   chat: IChat;
 }
 
 export const ChatItem: React.FC<Props> = ({ chat }) => {
-  const { chosenChat, setChosenChat, setChosenWindow } = useContext(
-    SharedDataContext
-  );
+  const { chosenChat, setChosenChat, setChosenWindow } =
+    useContext(SharedDataContext);
+  const { currentUser } = useContext(AuthContext);
 
   const getLastMessage = (): React.ReactNode => {
-    const message = chat.messages[chat.messages.length - 1];
+    const message = { user: "Wolf", message: "Auuuu" }; // Dummy data, need to be removed
     return (
       <div className="text-xs">
         <span
@@ -47,11 +49,19 @@ export const ChatItem: React.FC<Props> = ({ chat }) => {
       onClick={handleClick}
     >
       <div className="pl-2 pr-1.5">
-        <Avatar src={chat.imageSrc} size="large" alt="avatar" />
+        <Avatar
+          src={
+            "https://image.shutterstock.com/image-vector/wolf-howling-moon-eps-10-260nw-114579703.jpg"
+          }
+          size="large"
+          alt="avatar"
+        />
       </div>
       <div className="flex flex-col w-full pl-1.5 pr-2">
         <div className="flex items-center justify-between text-sm">
-          <span className="font-medium text-white ">{chat.name}</span>
+          <span className="font-medium text-white ">
+            {currentUser && getChatName(chat, currentUser)}
+          </span>
           <span
             className={
               chosenChat?.id === chat.id ? "text-white" : "text-text-secondary"

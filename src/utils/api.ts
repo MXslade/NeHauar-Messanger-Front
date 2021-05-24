@@ -26,3 +26,9 @@ export const AuthApi = {
     return instance.get("users/user-data");
   },
 };
+
+export const ChatApi = {
+  getUserChats() {
+    return instance.get("chats/user-chats");
+  },
+};

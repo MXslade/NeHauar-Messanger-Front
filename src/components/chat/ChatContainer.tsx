@@ -13,7 +13,7 @@ export const ChatContainer: React.FC = () => {
 
   const [connection, setConnection] = useState<HubConnection | null>(null);
   const [messages, setMessages] = useState<IMessage[]>(
-    chosenChat ? chosenChat.messages : []
+    chosenChat && chosenChat.messages ? chosenChat.messages : []
   );
   const latestMessages = useRef<IMessage[] | null>(null);
 

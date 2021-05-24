@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { ChatContainer } from "./components/chat/ChatContainer";
 import { Sidebar } from "./components/sidebar/Sidebar";
 import { IChat, IUser } from "./utils/types";
-import { dummyChats } from "./utils/dummyData";
+// import { dummyChats } from "./utils/dummyData";
 import { jwtTokenKey } from "./utils/contants";
-import { AuthApi } from "./utils/api";
-import { Modal } from "./components/ui/Modal";
-import { Button } from "./components/ui/Button";
+import { AuthApi, ChatApi } from "./utils/api";
 import { SignInModal } from "./components/Auth/SignInModal";
 import { SingUpModal } from "./components/Auth/SingUpModal";
 
@@ -27,7 +25,7 @@ interface IAuthContext {
 }
 
 export const SharedDataContext = React.createContext<ISharedDataContext>({
-  chats: dummyChats,
+  chats: [],
   isCollapsedVersion: false,
   chosenWindow: "chat",
   setChosenWindow: () => {},
@@ -45,7 +43,8 @@ export const AuthContext = React.createContext<IAuthContext>({
 const App: React.FC = () => {
   const [isCollapsedVersion, setIsCollapsedVersion] = useState<boolean>(false);
   const [chosenWindow, setChosenWindow] = useState<"sidebar" | "chat">("chat");
-  const [chosenChat, setChosenChat] = useState<IChat | null>(dummyChats[0]);
+  const [chats, setChats] = useState<IChat[]>([]);
+  const [chosenChat, setChosenChat] = useState<IChat | null>(null);
 
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<IUser | null>(null);
@@ -60,13 +59,23 @@ const App: React.FC = () => {
   const getCurrentUserData = () => {
     AuthApi.getCurrentUserData()
       .then((response) => {
-        console.log(response);
         setIsAuthenticated(true);
         setCurrentUser(response.data);
       })
       .catch((error) => {
         localStorage.removeItem(jwtTokenKey);
         setShowSignInModal(true);
+        setIsAuthenticated(false);
+      });
+  };
+
+  const getUserChats = () => {
+    ChatApi.getUserChats()
+      .then((response) => {
+        setChats(response.data);
+      })
+      .catch((error) => {
+        alert("Something went wrong while loading chats!");
       });
   };
 
@@ -74,10 +83,12 @@ const App: React.FC = () => {
     const token = localStorage.getItem(jwtTokenKey);
     if (token) {
       getCurrentUserData();
+      getUserChats();
     } else {
       setShowSignInModal(true);
     }
 
+    handleResize({ target: { innerWidth: window.innerWidth } });
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -87,12 +98,12 @@ const App: React.FC = () => {
   return (
     <SharedDataContext.Provider
       value={{
-        chats: dummyChats,
-        isCollapsedVersion: isCollapsedVersion,
-        chosenWindow: chosenWindow,
-        setChosenWindow: setChosenWindow,
-        chosenChat: chosenChat,
-        setChosenChat: setChosenChat,
+        chats,
+        isCollapsedVersion,
+        chosenWindow,
+        setChosenWindow,
+        chosenChat,
+        setChosenChat,
       }}
     >
       <AuthContext.Provider
